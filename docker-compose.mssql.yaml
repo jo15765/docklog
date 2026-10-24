@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  docklog:
+    build: .
+    container_name: docklog-mssql
+    ports:
+      - "8888:8000"
+    environment:
+      - RUNTIME_MODE=mssql
+      - SECRET_KEY=change-me-in-production
+      - DB_PATH=/app/data/docklog.db
+      - CLIENT_ACCESS=strict
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
